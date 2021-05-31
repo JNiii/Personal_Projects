@@ -1,3 +1,7 @@
+#A program that simulates the countdown and stopwatch function of
+#Clock Timer
+
+
 import time
 
 def get_user_input():
