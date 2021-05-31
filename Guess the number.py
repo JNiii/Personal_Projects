@@ -1,3 +1,8 @@
+'''
+A program that lets you play guess the
+number game
+'''
+
 from random import randint
 
 print('Welcome to Number Guessing Game Human!')
