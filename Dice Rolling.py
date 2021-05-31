@@ -1,3 +1,5 @@
+#A program that simulates dice rolling action
+
 from random import randint
 import sys
 
