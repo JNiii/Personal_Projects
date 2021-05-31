@@ -1,3 +1,8 @@
+'''
+A program that lets you guess a certain word
+from a set of word list.
+'''
+
 import sys
 import random
 
