@@ -1,4 +1,5 @@
 #Anagram Checker
+#A program that compares 2 strings and checks if it is an anagram.
 
 count = 0
 str_1 = sorted(list(input('Please enter first string: ').lower().replace(' ','')))
