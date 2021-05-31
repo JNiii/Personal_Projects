@@ -1,4 +1,7 @@
 #Character Frequency Histogram
+#A program that checks the number of characters and occurecnes in a file.
+
+
 from os import strerror
 freq = {chr(i) : 0 for i in range(97, 123)}
 count = 0
