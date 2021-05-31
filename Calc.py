@@ -1,3 +1,6 @@
+#Simple Calculator GUI using Tkinter
+
+
 from tkinter import *
 
 first_num, op = '', ''
