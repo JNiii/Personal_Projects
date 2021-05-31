@@ -1,7 +1,10 @@
+'''
+A program that scrapes company and telephone numbers
+on Yellow Pages Philippine Page
+'''
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
-
-
 
 class Scrap:
     
@@ -46,5 +49,4 @@ scrap = Scrap('https://www.yellow-pages.ph/locations/quezon-city-metro-manila/pa
 scrap.scrape_company()
 scrap.scrape_num()
 scrap.scrape_both()
-
 
