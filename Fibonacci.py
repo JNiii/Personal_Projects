@@ -1,5 +1,9 @@
 #Fibonacci Sequence
-
+'''A program that simulates 
+a fibonacci Sequence and searches
+the sequence if there is a number that
+matches the user's input
+'''
 fib = [0,1,1,] #initialize values
 arg = 3 #3 elements inside the fib sequence
 
