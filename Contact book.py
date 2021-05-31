@@ -1,4 +1,6 @@
 #Contact Book
+#A program that simulates a contact book
+
 import sys
 response = ''
 book = {}
