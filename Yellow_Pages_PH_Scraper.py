@@ -1,8 +1,8 @@
 '''
-A program that scrapes company and telephone numbers
-on Yellow Pages Philippine Page
+A program that scrapes company, telephone numbers,and address
+on Yellow Pages Philippine Page.
 '''
-
+import csv
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
@@ -10,43 +10,44 @@ class Scrap:
     
     def __init__(self, x):
         self.company = []
-        self.nums = []
-        self.both = []
+        self.info = []
         self.html = urlopen(x).read()
         
     def scrape_company(self):
         sp = BeautifulSoup(self.html, 'html.parser') 
         for tag in sp.find_all('a'): #iterate from 'a' tag
-            url = tag.get('data-section')
-            #get data from data-section attribute in 'a' tag
-            cname = tag.string
-            #get data in between <a> </a>
-            if url == 'business name': #double check if url attr has business name str
-                self.company.append(cname)
-                
-    def scrape_num(self):
-        sp = BeautifulSoup(self.html, 'html.parser')
-        for tag in sp.find_all('a'): #iterate from 'a' tag
-            url = tag.get('data-phone')
-            if isinstance(url, str):
-                self.nums.append(url)
-               
-    def scrape_both(self):
-        for x in range(0,len(self.company)):
-            self.both.append(self.company[x] + '\n' + 'tel:' + self.nums[x])
-            print(self.both[x])
-
-    def show_company(self):
-        for company in self.company:
-            print(company)
+            comp = tag.get('data-bizname')
+            num = tag.get('data-phone')
+            address = tag.get('data-bizadd')
+            if isinstance(num,str) and isinstance(address, str):
+                self.info = [comp,num,str(address)]
+                self.company.append(self.info)
+                self.info = [] 
 
     def show_nums(self):
-        for tel_nums in self.nums:
-            print(tel_nums)
+        for item in self.company:
+            print(item[1])
 
+    def show_company(self):
+        for item in self.company:
+            print(item[0])
+
+    def show_address(self):
+        for item in self.company:
+            print(item[2])
+
+    def save_to_new(self):
+        try:
+            with open(input('Enter filename: ') + '.csv','w+') as file:
+                writer = csv.writer(file, delimiter = ',')
+                writer.writerows(self.company)
+        except:
+            print('File name already in use.')
+                    
+    def save_to_existing(self):
+        with open(input('Enter filename: ') + '.csv','a+') as file:
+            writer = csv.writer(file, delimiter = ',')
+            writer.writerows(self.company)
     
-scrap = Scrap('https://www.yellow-pages.ph/locations/quezon-city-metro-manila/page-2')
-scrap.scrape_company()
-scrap.scrape_num()
-scrap.scrape_both()
-
+page = Scrap(input('Enter Yellow Pages PH url: '))
+page.scrape_company()
