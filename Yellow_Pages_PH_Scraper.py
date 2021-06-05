@@ -34,7 +34,7 @@ class Scrap:
     def scrape_both(self):
         for x in range(0,len(self.company)):
             self.both.append(self.company[x] + '\n' + 'tel:' + self.nums[x])
-            print(self.both[x])\
+            print(self.both[x])
 
     def show_company(self):
         for company in self.company:
