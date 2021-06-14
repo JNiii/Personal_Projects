@@ -134,7 +134,7 @@ class Ui_MainWindow(object):
     def mult_it(self, pressed):
         if self.init_num == 0:
             self.check_op(pressed)
-            self.init_num = int(self.output.text()) * self.init_num
+            self.init_num = float(self.output.text()) * self.init_num
             self.op = pressed
             self.output.setText('')
         else:
@@ -144,7 +144,7 @@ class Ui_MainWindow(object):
     def div_it(self, pressed):
         if self.init_num == 0:
             self.check_op(pressed)
-            self.init_num = int(self.output.text()) / self.init_num
+            self.init_num = float(self.output.text()) / self.init_num
             self.op = pressed
             self.output.setText('')
         else:
