@@ -87,39 +87,69 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.current_num = ''
+        self.init_num = 0
         self.op = ''
+        
     def equate(self):
         try:
-            self.output.setText(str(eval(self.current_num + self.op + self.output.text())))
+            self.output.setText(str(eval(str(self.init_num) + self.op + self.output.text())))
+            if type(self.init_num) is int:
+                self.init_num = int(self.output.text())
+            else:
+                self.init_num = round(float(self.output.text()), 2)
         except:
             self.output.setText('Error!')
         
-        
     def cleared(self):
-        self.output.setText('')
-        self.current_num = ''
+        self.init_num = 0
         self.op = ''
-        
-    def add_it(self, pressed):
-        self.current_num = self.output.text()
         self.output.setText('')
-        self.op = pressed
+
+    def check_op(self, op):
+        if op in '+-':
+            self.init_num = 0
+        else:
+            self.init_num = 1
+
+    def add_it(self, pressed):
+        if self.init_num == 0:
+            self.check_op(pressed)
+            self.init_num += int(self.output.text())
+            self.op = pressed
+            self.output.setText('')
+        else:
+            self.op = pressed
+            self.output.setText('')
         
     def sub_it(self, pressed):
-        self.current_num = self.output.text()
-        self.output.setText('')
-        self.op = pressed
+        if self.init_num == 0:
+            self.check_op(pressed)
+            self.init_num -= int(self.output.text())
+            self.op = pressed
+            self.output.setText('')
+        else:
+            self.op = pressed
+            self.output.setText('')
         
     def mult_it(self, pressed):
-        self.current_num = self.output.text()
-        self.output.setText('')
-        self.op = pressed
+        if self.init_num == 0:
+            self.check_op(pressed)
+            self.init_num = int(self.output.text()) * self.init_num
+            self.op = pressed
+            self.output.setText('')
+        else:
+            self.op = pressed
+            self.output.setText('')
         
     def div_it(self, pressed):
-        self.current_num = self.output.text()
-        self.output.setText('')
-        self.op = pressed
+        if self.init_num == 0:
+            self.check_op(pressed)
+            self.init_num = int(self.output.text()) / self.init_num
+            self.op = pressed
+            self.output.setText('')
+        else:
+            self.op = pressed
+            self.output.setText('')
                 
     def pressed(self,pressed):
         if pressed == '.' and '.' in self.output.text():
