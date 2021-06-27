@@ -89,7 +89,11 @@ class Ui_MainWindow(object):
 
         self.init_num = 0
         self.op = ''
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     def equate(self):
         try:
             self.output.setText(str(eval(str(self.init_num) + self.op + self.output.text())))
