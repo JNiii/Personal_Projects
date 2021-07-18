@@ -125,6 +125,7 @@ class Ui_MainWindow(object):
             self.update()
             QtTest.QTest.qWait(msecs)
             self.total -= 1
+        QtTest.QTest.qWait(5000)
         self.time_out.setText('Now take a rest!')
         self.rest_mode()
 
